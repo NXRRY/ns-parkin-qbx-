@@ -1,40 +1,65 @@
-ผมได้ทำการปรับปรุงและจัดระเบียบ `README.md` ให้ดูเป็นมืออาชีพมากขึ้น โดยเน้นไปที่การอ่านง่าย (Readability) การจัดกลุ่มข้อมูลที่เป็นลำดับขั้นตอน และการเพิ่มส่วนของ **RedZone System** (ระบบพื้นที่ห้ามจอด) ที่เราเพิ่งทำความตกลงกันไป เพื่อให้ผู้ใช้งานคนอื่นเข้าใจฟีเจอร์ใหม่นี้ด้วยครับ
+# nx-parking  
+**Advanced Parking System for FiveM (QBCore / Qbox)**  
+*Developed by NXRRY*
 
 ---
 
-# 📑 nx-parking (Updated 2026)
+## 📌 Description  
+nx-parking is an intelligent parking system that allows players to **park their vehicle anywhere** (not limited to garages). The system saves the vehicle’s condition (fuel, engine, body health) and last known location in the database. Parked vehicles are hidden and can be retrieved at any time via a menu, or through depot NPCs.  
 
-**Advanced Vehicle Persistence & Smart Impound System for QBCore** *Developed by NXRRY*
+The system fully supports:
+- **Job‑restricted parking zones** (RedZones) – only authorised jobs can park in certain areas.
+- **Police impound** with reasons, fines, and duration – vehicles are marked as impounded and stored in a separate table.
+- **Public depot** for vehicles sent by police or players with unpaid fees.
+- **Admin tools** to create, delete, and debug RedZones in‑game using **ox_lib** menus and zones.
+- **Radial menu** (built with **ox_lib**) for quick access to park and vehicle list.
+- **Target interaction** using **ox_target** to check status, retrieve, or impound vehicles.
+- **ox_lib notifications, progress circles, input dialogs, and context menus** throughout.
+- **Automatic version check** to keep your server up‑to‑date.
 
 ---
 
-## 📖 Overview
-
-**nx-parking** คือระบบจัดการยานพาหนะอัจฉริยะที่ช่วยให้ผู้เล่นสามารถ **"จอดรถได้ทุกที่"** โดยไม่ต้องง้อการาจแบบเดิมๆ ระบบจะบันทึกสถานะทุกอย่างของรถ (น้ำมัน, เครื่องยนต์, ตัวถัง, ตำแหน่ง) ลงใน Database ทันทีที่จอด นอกจากนี้ยังมีระบบ **RedZone (พื้นที่ควบคุม)** ที่แอดมินสามารถกำหนดพื้นที่ห้ามจอดหรือจำกัดเฉพาะอาชีพได้ผ่านตัวเกมโดยตรง
+## ✨ Key Features  
+- ✅ Park anywhere (outside restricted zones)  
+- ✅ Saves vehicle condition (fuel, engine, body, location)  
+- ✅ RedZones with job restrictions (configurable via in‑game commands)  
+- ✅ Vehicle status check (ownership, engine health, fuel, depot fee)  
+- ✅ Police impound system with custom reasons, fines, and release time  
+- ✅ Send vehicle to public depot  
+- ✅ Retrieve vehicles from depot/impound via NPC  
+- ✅ Set GPS to parked vehicle location  
+- ✅ Radial menu (ox_lib)  
+- ✅ Target interaction (ox_target)  
+- ✅ Admin commands to manage RedZones  
+- ✅ Automatic version check  
+- ✅ Fully localised strings (Thai included, easily customisable)
 
 ---
 
-## ✨ Key Features
+## 🔧 Dependencies  
+- **[Qbox / qbx_core](https://github.com/Qbox-project/qbx_core)** (or QBCore with ox_lib compatibility)  
+- **[ox_lib](https://github.com/overextended/ox_lib)** – used for notifications, radial menu, context menus, progress circles, input dialogs, and zone management  
+- **[ox_target](https://github.com/overextended/ox_target)** – for interacting with vehicles and NPCs  
+- **[LegacyFuel](https://github.com/InZidiuZ/LegacyFuel)** (or any compatible fuel system)  
 
-* 📍 **Park Anywhere**: จอดรถได้ทุกที่ (ยกเว้นพื้นที่ห้ามจอด) พร้อมบันทึกพิกัดแบบ Real-time
-* 🛠 **Vehicle Persistence**: เก็บสถานะละเอียด (Fuel, Engine, Body Health) รถพังแค่ไหนจอดไว้ก็พังแค่นั้น
-* 🚫 **Dynamic RedZones**: ระบบพื้นที่ห้ามจอดที่แอดมินสร้างได้เองในเกม (In-game Creator) พร้อมเช็ค Job อัตโนมัติ
-* 🚓 **Advanced Police Impound**: ระบบยึดรถโดยตำรวจ กำหนดค่าปรับ, เหตุผล และระยะเวลาขังรถได้
-* 🏬 **Smart Depot**: ตรวจสอบสถานะรถและเบิกรถได้ผ่าน NPC Depot/Impound
-* 🧰 **Admin Toolset**: คำสั่งสำหรับแอดมินในการตรวจสอบ, วาร์ปไปหาโซน หรือลบโซนควบคุม
-* 🔗 **Integration**: รองรับ `qb-target`, `ox_lib` และ `qb-radialmenu` สมบูรณ์แบบ
+> **Note:** The script does **not** require `qb-radialmenu`, `qb-target`, or `PolyZone` separately – all functionality is provided by **ox_lib** and **ox_target**.
 
+---
 
+## 📥 Installation  
 
-## 📥 Installation
+### 1. Download and Place Files  
+- Download the script from GitHub  
+- Place the `nx-parking` folder in your server's `resources` directory  
 
-### 1. Database Setup
-
-รันคำสั่ง SQL ต่อไปนี้เพื่อเตรียมตารางข้อมูล (เพิ่ม Column ใน `player_vehicles` และสร้างตาราง `impound_data` สำหรับเก็บประวัติการยึดรถ)
+### 2. Database Setup  
+Run the following SQL queries in your server database.  
+(Ensure the `player_vehicles` table exists; if not, create it as per Qbox/QBCore standards.)
 
 ```sql
+-- Add required columns to player_vehicles (if not present)
 ALTER TABLE `player_vehicles` 
-ADD COLUMN `state` INT DEFAULT 0, -- 0=Active, 1=Parked, 2=Impounded
+ADD COLUMN `state` INT DEFAULT 0, -- 0 = active, 1 = parked, 2 = impounded
 ADD COLUMN `depotprice` INT DEFAULT 0,
 ADD COLUMN `parking` LONGTEXT DEFAULT NULL,
 ADD COLUMN `coords` LONGTEXT DEFAULT NULL,
@@ -43,6 +68,7 @@ ADD COLUMN `fuel` FLOAT DEFAULT 100,
 ADD COLUMN `engine` FLOAT DEFAULT 1000,
 ADD COLUMN `body` FLOAT DEFAULT 1000;
 
+-- Create impound_data table for impound history
 CREATE TABLE IF NOT EXISTS `impound_data` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `plate` VARCHAR(10) NOT NULL,
@@ -53,60 +79,154 @@ CREATE TABLE IF NOT EXISTS `impound_data` (
   `officer_name` VARCHAR(100),
   `release_time` TIMESTAMP NULL,
   `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_plate` (`plate`),
   UNIQUE KEY `unique_plate` (`plate`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 ```
 
-### 2. File Placement
-
-* วางโฟลเดอร์ `nx-parking` ใน `resources`
-* ตรวจสอบให้แน่ใจว่ามีโฟลเดอร์ `data/redzones.json` เพื่อเก็บข้อมูลพื้นที่ควบคุม
-* เพิ่ม `ensure nx-parking` ใน `server.cfg`
-
----
-
-## ⌨️ Admin Commands (RedZone Creator)
-
-แอดมินที่มี Permission `group.admin` สามารถใช้คำสั่งต่อไปนี้จัดการพื้นที่ห้ามจอดได้:
-
-| Command | Action |
-| --- | --- |
-| `/addredzone` | เริ่มโหมดสร้างพื้นที่ห้ามจอด (มาร์คจุดบนพื้น) |
-| `/delredzone` | เปิดเมนูเลือกโซนที่ต้องการลบ (พร้อมปุ่มวาร์ปไปตรวจสอบ) |
-| `/debugredzone` | เปิด/ปิด เส้นขอบเขต (Green/Red Lines) เพื่อดูพื้นที่จริง |
+### 3. Add to server.cfg  
+```
+ensure nx-parking
+```
 
 ---
 
-## 🎮 How to Use
+## ⚙️ Configuration (config.lua)  
 
-### สำหรับผู้เล่นทั่วไป
+The main configuration options in `config.lua`:
 
-* **การจอดรถ**: พิมพ์ `/park` หรือเลือกจาก Radial Menu ระบบจะเก็บรถและแสดงข้อความยืนยัน
-* **การเอารถออก**: เดินไปที่จุดที่รถจอดอยู่ (จะมี Target ให้กด) หรือไปที่ NPC Depot หากรถหาย/ถูกยึด
-* **เช็คสถานะ**: ใช้ระบบ Target ที่ตัวรถเพื่อดูความเสียหายและค่าน้ำมัน
+| Variable | Description |
+|----------|-------------|
+| `Config.Debug` | Enable/disable debug logging |
+| `Config.EnableParkCommand` | Enable `/park` command |
+| `Config.notifyType` | Notification style: `'ox'` (recommended), `'qb'`, or `'chat'` |
+| `Config.DefaultSpawnCoords` | Default spawn coordinates if no vehicle data |
+| `Config.Depot` | List of depot locations (NPC, spawn points, blip, marker) |
+| `Config.Impound` | Citizen and Officer impound NPCs, spawn coordinates |
+| `Config.RedZones` | Pre‑defined parking zones with job restrictions (optional) |
+| `Config.ImpoundReasons` | Impound reasons with fines and duration (used by police) |
+| `Config.Strings` | All UI strings (customisable, Thai included) |
 
-### สำหรับตำรวจ (Police)
+### Example: Adding a Depot
+```lua
+Config.Depot = {
+    {
+        name = "Legion Depot",
+        coords = vector4(408.63, -1623.13, 29.29, 228.48),
+        spawnPoint = { vector4(...), ... },
+        marker = { ... },
+        blip = { ... }
+    }
+}
+```
 
-* **การยึดรถ**: ใช้ Target > Law Enforcement Menu เลือกเหตุผลและตั้งค่าปรับ
-* **การคืนรถ**: ตรวจสอบประวัติการยึดรถผ่าน NPC และทำการคืนรถเมื่อครบกำหนดเวลา
+### Example: Adding a RedZone (pre‑defined)
+```lua
+Config.RedZones = {
+    {
+        name = "police_station_1",
+        title = "Police Station Parking",
+        points = { vector2(410.82, -1031.62), ... },
+        minZ = 20.0, maxZ = 40.0,
+        allowJobs = { ['police'] = true, ['ambulance'] = true }
+    }
+}
+```
+
+### Example: Impound Reasons
+```lua
+Config.ImpoundReasons = {
+    { label = 'จอดในที่ห้ามจอด ($500 / 30 mins)', value = 'illegal_parking', price = 500, time = 30 },
+    ...
+}
+```
+
+### Customizing Strings  
+All text displayed to players is located in `Config.Strings`. You can modify them to match your server's language or preference.
 
 ---
 
-## 🤝 Credits
+## 🎮 Usage  
 
-* **Developer**: [NXRRY](https://www.google.com/search?q=https://github.com/NXRRY)
-* Special thanks to **QBCore Team** & **Overextended**
+### For Regular Players  
+- **Park Vehicle**: Drive to desired spot, then use Radial Menu (ox_lib) > "Park Vehicle" or type `/park` (must be stationary and driver).  
+- **View Vehicle List**: Radial Menu > "Vehicle List" or type `/parklish` (if enabled).  
+- **Retrieve Parked Vehicle**: Approach a parked vehicle (target appears) → "Retrieve Vehicle".  
+- **Check Vehicle Status**: Approach vehicle → Target > "Check Vehicle Status".  
+- **Retrieve from Depot**: Go to Depot NPC → "View Pending Vehicles".  
+- **Retrieve Impounded Vehicle**: Go to Impound NPC → "Contact Impound Officer" (if release time has passed).  
 
-**© 2026 NXRRY. All rights reserved.**
+### For Police / Officers  
+- **Impound Vehicle**: Approach target vehicle → Target > "🛡️ Law Enforcement Menu" → choose action (Impound/Depot) and reason.  
+- **Check Citizen Impound Records**: Go to "Impound Officer" NPC → "Search Impound Records" → select nearby citizen.  
+- **Release Vehicle**: When impound time expires, officer can release the vehicle directly to the owner via the same menu.  
+
+### For Admins (Managing RedZones)  
+- **Create a RedZone**: `/addredzone` – then follow on‑screen instructions (place points with E, save with G, cancel with X). Uses ox_lib text UI and input dialogs.  
+- **Delete a RedZone**: `/delredzone` – opens an ox_lib context menu to teleport to or delete existing zones.  
+- **Toggle Debug Polygons**: `/debugredzone` – shows/hides the outlines of all RedZones (ox_lib zone debug).  
 
 ---
 
-### สิ่งที่ผมปรับเปลี่ยนให้:
+## ⌨️ Commands  
+- `/park` – Park the current vehicle (if enabled)  
+- `/parklish` – Open vehicle list (alternative to radial menu)  
+- `/addredzone` – (Admin) Start creating a new RedZone  
+- `/delredzone` – (Admin) Open RedZone deletion/management menu  
+- `/debugredzone` – (Admin) Toggle debug drawing of RedZones  
 
-1. **ปีลิขสิทธิ์**: อัปเดตเป็น 2026 ตามปัจจุบัน
-2. **ส่วนของ RedZone**: เพิ่มตารางคำสั่งแอดมินและการอธิบายฟีเจอร์ In-game Creator เข้าไปเพื่อให้ README สอดคล้องกับโค้ดล่าสุด
-3. **ความกะทัดรัด**: ปรับเปลี่ยนหัวข้อให้ดู Modern และอ่านง่ายขึ้น
-4. **SQL**: จัดระเบียบ Comment ใน SQL ให้แอดมินคนอื่นอ่านแล้วเข้าใจง่ายว่า Column นี้เอาไว้ทำอะไร
+---
 
-คุณสามารถก๊อปปี้ข้อความนี้ไปวางทับในไฟล์ `README.md` ได้เลยครับ! มีส่วนไหนที่อยากให้เน้นเป็นพิเศษอีกไหมครับ?
+## 🗂️ Database Structure (Additional Columns)  
+
+### Table `player_vehicles` (extended)
+| Column | Type | Description |
+|--------|------|-------------|
+| `state` | INT | 0=active, 1=parked, 2=impounded |
+| `depotprice` | INT | Fee required before retrieval |
+| `parking` | JSON | Parking info (timestamp, location) |
+| `coords` | JSON | Last known coordinates |
+| `rotation` | JSON | Vehicle rotation |
+| `fuel` | FLOAT | Fuel level |
+| `engine` | FLOAT | Engine health |
+| `body` | FLOAT | Body health |
+
+### Table `impound_data`
+| Column | Type | Description |
+|--------|------|-------------|
+| `plate` | VARCHAR | License plate |
+| `vehicle_model` | VARCHAR | Vehicle model name |
+| `charge_name` | VARCHAR | Impound reason |
+| `fee` | INT | Fine amount |
+| `impound_time` | INT | Impound duration (minutes) |
+| `officer_name` | VARCHAR | Name of the officer |
+| `release_time` | TIMESTAMP | Time when vehicle can be released |
+| `timestamp` | TIMESTAMP | Record creation time |
+
+---
+
+## 📸 Screenshots  
+![Screenshot](images/showcase.jpg)  
+
+---
+
+## 🤝 Credits  
+- Developer: **NXRRY**  
+- Powered by [ox_lib](https://github.com/overextended/ox_lib) and [ox_target](https://github.com/overextended/ox_target)  
+- Thanks to Qbox / QBCore communities for their frameworks.  
+
+---
+
+## 🔗 Links  
+- GitHub: [https://github.com/NXRRY/nx-parking](https://github.com/NXRRY/nx-parking)  
+- Discord: *Coming soon*  
+
+---
+
+## ⚠️ Notes  
+- This script is designed to work with **Qbox (qbx_core)** or **QBCore** that uses **ox_lib**.  
+- If you encounter issues or have suggestions, please open an issue on GitHub.  
+
+---
+
+**© 2025 NXRRY. All rights reserved.**
