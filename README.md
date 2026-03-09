@@ -103,7 +103,6 @@ The main configuration options in `config.lua`:
 | `Config.DefaultSpawnCoords` | Default spawn coordinates if no vehicle data |
 | `Config.Depot` | List of depot locations (NPC, spawn points, blip, marker) |
 | `Config.Impound` | Citizen and Officer impound NPCs, spawn coordinates |
-| `Config.RedZones` | Pre‑defined parking zones with job restrictions (optional) |
 | `Config.ImpoundReasons` | Impound reasons with fines and duration (used by police) |
 | `Config.Strings` | All UI strings (customisable, Thai included) |
 
@@ -120,18 +119,6 @@ Config.Depot = {
 }
 ```
 
-### Example: Adding a RedZone (pre‑defined)
-```lua
-Config.RedZones = {
-    {
-        name = "police_station_1",
-        title = "Police Station Parking",
-        points = { vector2(410.82, -1031.62), ... },
-        minZ = 20.0, maxZ = 40.0,
-        allowJobs = { ['police'] = true, ['ambulance'] = true }
-    }
-}
-```
 
 ### Example: Impound Reasons
 ```lua
